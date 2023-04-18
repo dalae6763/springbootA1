@@ -22,12 +22,12 @@ public class BoardController {
     public String write(Model model) {
         BoardForm boardForm = new BoardForm();
         model.addAttribute("boardForm", boardForm);
-
+        /**
         boolean result = false;
         if (!result) {
             throw new RuntimeException("예외발생111111");
         }
-
+        */
         return "board/write";
     }
 
