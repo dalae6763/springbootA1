@@ -40,12 +40,12 @@ public class ApiBoardController {
 
     @PostMapping("/write")
     public ResponseEntity<List<Board>> write(@RequestBody BoardForm boardForm) {
-
+        /**
         boolean result = true;
         if (result) {
             throw new CommonException("게시글 등록 실패", HttpStatus.BAD_REQUEST);
         }
-
+        */
         service.write(boardForm);
 
         //List<Board> boards = boardDao.gets();
@@ -57,7 +57,7 @@ public class ApiBoardController {
 
         return ResponseEntity.created(URI.create("/board/list")).build();
     }
-
+    /**
     @ExceptionHandler(Exception.class)
     public ResponseEntity<JSONResult<Object>> errorHandler(Exception e) {
 
@@ -76,4 +76,5 @@ public class ApiBoardController {
 
         return ResponseEntity.status(status).body(jsonResult);
     }
+    */
 }
