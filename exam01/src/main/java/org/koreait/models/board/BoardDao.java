@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.List;
 
 @Component
 @RequiredArgsConstructor
@@ -36,6 +37,13 @@ public class BoardDao {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public List<Board> gets() {
+        String sql = "SELECT * FROM BOARD ORDER BY REGDT DESC";
+        List<Board> list = jdbcTemplate.query(sql, this::boardMapper);
+
+        return list;
     }
 
     private Board boardMapper(ResultSet rs, int i) throws SQLException {
