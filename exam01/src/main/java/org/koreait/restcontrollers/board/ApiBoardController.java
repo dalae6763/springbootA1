@@ -2,6 +2,8 @@ package org.koreait.restcontrollers.board;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
+import org.koreait.commons.CommonException;
+import org.koreait.commons.JSONResult;
 import org.koreait.controllers.boards.BoardForm;
 import org.koreait.models.board.Board;
 import org.koreait.models.board.BoardDao;
@@ -39,6 +41,11 @@ public class ApiBoardController {
     @PostMapping("/write")
     public ResponseEntity<List<Board>> write(@RequestBody BoardForm boardForm) {
 
+        boolean result = true;
+        if (result) {
+            throw new CommonException("게시글 등록 실패", HttpStatus.BAD_REQUEST);
+        }
+
         service.write(boardForm);
 
         //List<Board> boards = boardDao.gets();
@@ -46,12 +53,27 @@ public class ApiBoardController {
         return ResponseEntity.status(HttpStatus.CREATED) // 201
                              .build();
          */
+
+
         return ResponseEntity.created(URI.create("/board/list")).build();
     }
 
     @ExceptionHandler(Exception.class)
-    public String errorHandler() {
+    public ResponseEntity<JSONResult<Object>> errorHandler(Exception e) {
 
-        return "예외발생!";
+        // e -> CommonExcecption 클래스로 부터 만들어진 객체이면 - getStatus()
+        HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR; // 500 - 기본 응답 코드
+
+        if (e instanceof CommonException) {
+            CommonException commonException = (CommonException)e;
+            status = commonException.getStatus();
+        }
+
+        JSONResult<Object> jsonResult = new JSONResult<>();
+        jsonResult.setSuccess(false);
+        jsonResult.setMessage(e.getMessage());
+        jsonResult.setStatus(status);
+
+        return ResponseEntity.status(status).body(jsonResult);
     }
 }
