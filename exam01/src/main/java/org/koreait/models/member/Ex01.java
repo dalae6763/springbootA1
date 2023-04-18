@@ -19,5 +19,6 @@ public class Ex01 {
                             .userNm("사용자02")
                             .build();
         System.out.println(member2);
+        //Member2 member3 = new Member2();
     }
 }
