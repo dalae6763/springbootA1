@@ -25,10 +25,13 @@ public class ApiBoardController {
 
 
     @GetMapping
-    public List<Board> boardList() {
+    public ResponseEntity<JSONResult<List<Board>>> boardList() {
         List<Board> list = boardDao.gets();
+        JSONResult<List<Board>> jsonResult = new JSONResult<>();
+        jsonResult.setSuccess(true);
+        jsonResult.setData(list);
 
-        return list;
+        return ResponseEntity.ok(jsonResult);
     }
 
     @GetMapping("/{id}")
