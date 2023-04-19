@@ -1,5 +1,6 @@
 package org.koreait.restcontrollers.member;
 
+import lombok.extern.java.Log;
 import org.koreait.models.member.User;
 import org.springframework.web.bind.annotation.*;
 
@@ -8,6 +9,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+@Log
 @RestController
 @RequestMapping("/api")
 public class ApiMemberController {
@@ -18,7 +20,7 @@ public class ApiMemberController {
                 .userId("user01")
                 .userPw("123456")
                 .userNm("사용자01")
-                .regDt(LocalDateTime.now())
+                //.regDt(LocalDateTime.now())
                 .build();
 
         return user;
@@ -33,7 +35,7 @@ public class ApiMemberController {
                     .userId("user" + i)
                     .userPw("123456")
                     .userNm("사용자" + i)
-                    .regDt(LocalDateTime.now())
+                   // .regDt(LocalDateTime.now())
                     .build();
             members.add(user);
         }
@@ -43,6 +45,6 @@ public class ApiMemberController {
 
     @PostMapping("/join")
     public void join(@RequestBody User user) {
-
+        log.info(user.toString());
     }
 }
