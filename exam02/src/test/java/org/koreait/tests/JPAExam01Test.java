@@ -83,6 +83,10 @@ public class JPAExam01Test {
 
         em.flush();
 
+        em.merge(member); // 영속 상태 - 상태 변화 감지 O
+        em.flush();
+
+
 
 
     }
