@@ -1,5 +1,5 @@
 package org.koreait.contants;
 
 public enum MemberType {
-    USER, MANAGER, ADMIN
+    USER, ADMIN
 }

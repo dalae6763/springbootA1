@@ -26,7 +26,7 @@ public class JPAExam01Test {
         member.setUserId("user01");
         member.setUserNm("사용자01");
         member.setUserPw("123456");
-        member.setRegDt(LocalDateTime.now());
+        //member.setRegDt(LocalDateTime.now());
 
         em.persist(member);
         em.flush();
@@ -49,7 +49,7 @@ public class JPAExam01Test {
         member.setUserId("user02");
         member.setUserNm("사용자02");
         member.setUserPw("123456");
-        member.setRegDt(LocalDateTime.now());
+        //member.setRegDt(LocalDateTime.now());
 
         em.persist(member);
         em.flush();
@@ -72,7 +72,7 @@ public class JPAExam01Test {
         member.setUserId("user01");
         member.setUserNm("사용자01");
         member.setUserPw("123456");
-        member.setRegDt(LocalDateTime.now());
+       // member.setRegDt(LocalDateTime.now());
 
         em.persist(member);
         em.flush();
