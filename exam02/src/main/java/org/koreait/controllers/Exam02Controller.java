@@ -56,8 +56,16 @@ public class Exam02Controller {
     public List<Member> ex05() {
 
         Pageable pageable = PageRequest.of(0, 10, Sort.by(Sort.Order.desc("regDt")));
-        Page<Member> members = repository.findAll(pageable);
+        Page<Member> page = repository.findAll(pageable);
+        List<Member> members = page.getContent();
 
-        return null;
+        return members;
+    }
+
+    @GetMapping("/ex06")
+    public List<Member> ex06() {
+        List<Member> members = repository.findByUsers("용");
+
+        return members;
     }
 }
